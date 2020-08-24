@@ -1,0 +1,41 @@
+﻿@model AppWebC.Models.Color
+@{
+    ViewBag.Title = "Crear Color";
+}
+
+
+<div class="col-12">
+    <h2>Crear nuevo color</h2>
+</div>
+
+
+
+@using (Html.BeginForm("Create", "Color", FormMethod.Post))
+{    
+    <form action="/Color/Create" method="post">
+        @Html.AntiForgeryToken()
+        <div class="box">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.nombre_color)
+                            @Html.TextBoxFor(m => m.nombre_color, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.nombre_color, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.color)
+                            @Html.TextBoxFor(m => m.color, new { @class = "form-control", type = "color" })
+                            @Html.ValidationMessageFor(m => m.color, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}

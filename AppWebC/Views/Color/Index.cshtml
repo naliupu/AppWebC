@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AppWebC.Models.Color>
+@{
+    ViewBag.Title = "Colores";
+}
+
+<div class="col-12">
+    <h2>Lista de colores</h2>
+</div>
+<div class="box">
+    <div class="box-body">
+        <div class="row">
+            <div class="col-12">
+                <table class="colores">
+                    <thead>
+                        <tr>
+                            <th class="list-color">Nombre</th>
+                            <th class="list-color">Color</th>
+                            <th class="list-color">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.nombre_color</td>
+                                <td class="listar-color" style="width: 70%; height: 70px; background: @item.color"></td>
+                                <td>
+                                    <a href="/Color/Edit/@item.Id" class="btn btn-primary boton-editar">Editar</a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#tbl_datos').DataTable();
+        });
+    </script>
+}*@

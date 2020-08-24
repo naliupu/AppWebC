@@ -1,0 +1,45 @@
+﻿@model AppWebC.Models.Color
+@{
+    ViewBag.Title = "Editar Color";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<h2>Editar de color</h2>
+
+<br />
+
+@using (Html.BeginForm("Edit", "Color", FormMethod.Post))
+{
+    <input type="hidden" name="id" value="@Model.Id" />
+    <form action="/Color/Edit" method="post">
+        @Html.AntiForgeryToken()
+        <div class="box">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.nombre_color)
+                            @Html.TextBoxFor(m => m.nombre_color, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.nombre_color, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.color)
+                            @Html.TextBoxFor(m => m.color, new { @class = "form-control", type = "color" })
+                            @Html.ValidationMessageFor(m => m.color, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-warning">Modificar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+

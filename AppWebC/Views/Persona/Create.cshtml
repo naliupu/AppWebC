@@ -1,0 +1,105 @@
+﻿
+@model AppWebC.Models.PersonaUserViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Crear nueva persona</h2>
+
+
+@using (Html.BeginForm("Create", "Persona", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.persona.nombre)
+                        @Html.TextBoxFor(m => m.persona.nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.persona.nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.persona.telefono)
+                        @Html.TextBoxFor(m => m.persona.telefono, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.persona.telefono, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.persona.direccion)
+                        @Html.TextBoxFor(m => m.persona.direccion, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.persona.direccion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.persona.edad)
+                        @Html.TextBoxFor(m => m.persona.edad, new { @class = "form-control", type = "number" })
+                        @Html.ValidationMessageFor(m => m.persona.edad, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.persona.fecha_nacimiento)
+                        @Html.TextBoxFor(m => m.persona.fecha_nacimiento, new { @class = "form-control", type = "date" })
+                        @Html.ValidationMessageFor(m => m.persona.fecha_nacimiento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        @*Otra forma de hacerlo
+                            <label>Colores</label>
+                            <select class="form-control">
+                                @foreach (var item in ViewBag.colores)
+                                {
+                                    <option style="background: @item.color" value="@item.Id">@item.nombre_color</option>
+                                }
+                            </select>*@
+
+                        @Html.LabelFor(m => m.persona.id_color)
+                        @Html.DropDownListFor(m => m.persona.id_color, new SelectList(ViewBag.colores, "id", "nombre_color"), "", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.persona.id_color, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.usuario.Email)
+                        @Html.TextBoxFor(m => m.usuario.Email, new { @class = "form-control", type = "email" })
+                        @Html.ValidationMessageFor(m => m.usuario.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.usuario.Password)
+                        @Html.TextBoxFor(m => m.usuario.Password, new { @class = "form-control", type = "Password" })
+                        @Html.ValidationMessageFor(m => m.usuario.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.usuario.ConfirmPassword)
+                        @Html.TextBoxFor(m => m.usuario.ConfirmPassword, new { @class = "form-control", type = "Password" })
+                        @Html.ValidationMessageFor(m => m.usuario.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-success">Guardar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

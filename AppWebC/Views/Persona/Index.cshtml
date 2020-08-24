@@ -1,0 +1,99 @@
+﻿@model IEnumerable<AppWebC.Models.PersonaViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de personas</h2>
+
+@*<div class="box">
+    <div class="box-body">*@
+<div>
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>Fecha nacimiento</th>
+                <th>Edad</th>
+                <th>Color</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nombre</td>
+                    <td>@item.telefono</td>
+                    <td>@item.direccion</td>
+                    <td>@item.fecha_nacimiento</td>
+                    <td>@item.edad</td>
+                    <td>@item.color</td>
+
+                    <td>
+                        <a href="#" class="btn btn-primary">Editar</a>
+                        <button class="btn btn-info" onclick="consulta('@item.id_usuario')">Ver usuario</button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@*</div>
+    </div>*@
+
+
+<!-- Button trigger modal -->
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+    Launch static backdrop modal
+</button>*@
+
+<!-- Modal -->
+<div class="modal fade" id="MyModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="usuario_datos">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+    <script>
+
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+
+
+
+        function consulta(id) {
+
+            $.ajax({
+                url: '/Persona/ConsultarUsuario/' + id,
+                type: 'get',
+                datatype: 'json'
+            }).done(function (respuesta) {
+                $("#usuario_datos").html("El correo es: " + respuesta.Email);
+                $("#MyModal").modal();
+            }).fail(function () {
+                alert("Error en el servidor, contacta con el admin");
+            })
+        }
+
+    </script>
+}

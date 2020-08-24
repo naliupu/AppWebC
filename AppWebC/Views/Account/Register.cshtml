@@ -1,0 +1,68 @@
+﻿@model AppWebC.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+
+    <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="~/Assets/css/login.css">
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/jquery.min.js"></script>
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+
+            <div class="fadeIn first">
+                <br />
+                <img src="~/Assets/img/favicon.png" id="icon" alt="Icono" />
+                <br />
+                <br />
+            </div>
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @*<input type="text" id="nombre" class="fadeIn second" name="nombre" placeholder="Nombre">
+                    <input type="text" id="apellido" class="fadeIn second" name="apellido" placeholder="Apellido">*@
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "fadeIn second" })
+                @*<input type="text" id="correo" class="fadeIn second" name="correo" placeholder="Correo">*@
+
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-12 control-label" })
+                @Html.PasswordFor(m => m.Password, new { @class = "fadeIn third" })
+                @*<input type="text" id="contraseña" class="fadeIn third" name="contraseña" placeholder="Contraseña">*@
+
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-12 control-label" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "fadeIn third" })
+
+
+                <br />
+                <br />
+
+                <input type="submit" class="fadeIn fourth" value="Registrar">
+
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+            }
+
+            <div id="formFooter">
+                <a class="underlineHover" href="/Account/Login">Ya tengo cuenta</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Assets/js/jquery.validate.min.js"></script>
+    <script src="~/Assets/js/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+
+
+

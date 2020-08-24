@@ -1,0 +1,77 @@
+﻿@using AppWebC.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Iniciar sesion";
+    Layout = null;
+}
+
+@section css{
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesion</title>
+
+    <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="~/Assets/css/login.css">
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+
+
+            <div class="icono">
+                <br />
+                <img src="~/Assets/img/favicon.png" id="icon" alt="Icon" />
+                @*<br />
+                    <br />*@
+            </div>
+
+            @*esta seria la etiqueta form pero en c# @*@
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "" }))
+            {
+                //un token de verificacion para la seguridad de la app
+                @Html.AntiForgeryToken()
+
+
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+
+                @Html.TextBoxFor(m => m.Email, new { @class = "fadeIn second" })
+
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+
+
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-12 control-label" })
+                @Html.PasswordFor(m => m.Password, new { @class = "fadeIn third" })
+                @*<input type="text" id="Password" class="fadeIn third" name="Password" placeholder="">*@
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                <br />
+                <br />
+
+                <input type="submit" class="fadeIn fourth" value="iniciar">
+
+                //para ver los errores que arroja el form
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            }
+
+            <div id="formFooter">
+                @Html.ActionLink("Olvide contraseña?", "ForgotPassword")
+                <br>
+                @Html.ActionLink("Registrar nuevo usuario", "Register")
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Assets/js/jquery.validate.min.js"></script>
+    <script src="~/Assets/js/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

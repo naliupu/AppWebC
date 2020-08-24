@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppWebC", "AppWebC\AppWebC.csproj", "{BDF8E72F-66FB-4121-870C-E80E2E7BBBFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDF8E72F-66FB-4121-870C-E80E2E7BBBFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF8E72F-66FB-4121-870C-E80E2E7BBBFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDF8E72F-66FB-4121-870C-E80E2E7BBBFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDF8E72F-66FB-4121-870C-E80E2E7BBBFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DEE1953-9411-4159-A496-343D98017674}
+	EndGlobalSection
+EndGlobal

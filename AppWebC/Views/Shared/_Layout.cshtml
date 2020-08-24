@@ -1,0 +1,92 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App C#</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Traveling HTML5 Template" />
+    <meta name="author" content="Design Hooks" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/img/favicon.png" type="image/x-icon" rel="shortcut icon" />
+    <link href="~/Assets/css/datatables.min.css" rel="stylesheet" />
+    
+</head>
+<body class="home" id="page">
+
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="container">
+
+                <nav class="navbar navbar-expand-lg navbar-light">
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/Home/Index">Inicio <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Personas
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/Persona/Create">Crear</a>
+                                    <a class="dropdown-item" href="/Persona/Index">Listar</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Colores
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/Color/Create">Crear</a>
+                                    <a class="dropdown-item" href="/Color">Listar</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Opciones
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">@User.Identity.GetUserName()</a>
+                                    <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Salir</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        }
+    }
+
+
+    <!-- Content -->
+    <div class="container">
+
+        @RenderBody()
+
+    </div>
+
+
+    <!-- Scripts -->
+
+    <script src="~/Assets/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    @*<script src="~/Assets/js/functions.js"></script>*@
+    @*<script src="~/Assets/js/jquery-3.4.1.slim.min.js"></script>*@
+    <script src="~/Assets/js/jquery.validate.min.js"></script>
+    <script src="~/Assets/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Assets/js/datatables.min.js"></script>
+    
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+
